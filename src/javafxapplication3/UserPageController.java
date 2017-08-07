@@ -10,7 +10,9 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -21,11 +23,15 @@ public class UserPageController implements Initializable {
 
       @FXML
     private Label label;
+      
+      @FXML
+      private Button exitButton;
     
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+    private void exitProgram(ActionEvent event) {
+        Stage stage = new Stage();
+        Stage thisStage = (Stage) exitButton.getScene().getWindow();
+        thisStage.close();
     }
     
     @Override
