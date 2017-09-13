@@ -13,7 +13,7 @@
       <JFXButton fx:id="marksButton" layoutX="468.0" layoutY="177.0" style="-fx-background-color: #00796B;" text="Marks" />
       <JFXButton fx:id="subjectButton" layoutX="462.0" layoutY="216.0" style="-fx-background-color: #00796B;" text="Subjects" />
       <JFXButton layoutX="461.0" layoutY="331.0" style="-fx-background-color: #00796B;" text="Students" />
-      <JFXButton layoutX="544.0" layoutY="425.0" style="-fx-background-color: #00796B;" text="Exit" />
+      <JFXButton fx:id="exitButton" layoutX="544.0" layoutY="425.0" onAction="#exitProgram" style="-fx-background-color: #00796B;" text="Exit" />
       <TableView layoutX="46.0" layoutY="189.0" prefHeight="200.0" prefWidth="272.0">
         <columns>
           <TableColumn prefWidth="137.0" text="Subject" />

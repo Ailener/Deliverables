@@ -12,6 +12,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 /**
  *
@@ -24,7 +25,7 @@ public class JavaFXApplication3 extends Application {
         
         Stage theStage = stage;
         
-        AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("homePage.fxml"));
+        StackPane root = (StackPane) FXMLLoader.load(getClass().getResource("homePage.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -33,6 +34,8 @@ public class JavaFXApplication3 extends Application {
        
     }
 
+    
+    
     /**
      * @param args the command line arguments
      */
