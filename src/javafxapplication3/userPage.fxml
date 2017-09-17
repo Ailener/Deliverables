@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXBadge?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.TableColumn?>
@@ -7,8 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="482.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="javafxapplication3.UserPageController">
+<AnchorPane id="AnchorPane" prefHeight="482.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication3.UserPageController">
    <children>
       <JFXButton fx:id="marksButton" layoutX="468.0" layoutY="177.0" style="-fx-background-color: #00796B;" text="Marks" />
       <JFXButton fx:id="subjectButton" layoutX="462.0" layoutY="216.0" style="-fx-background-color: #00796B;" text="Subjects" />
@@ -21,7 +25,7 @@
         </columns>
       </TableView>
       <JFXBadge prefHeight="103.0" prefWidth="600.0" style="-fx-background-color: #00796B;" />
-      <Text layoutX="50.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello, Renier, here are your subjects for the day" wrappingWidth="204.638671875" />
+      <Text fx:id="label" layoutX="50.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello, Renier, here are your subjects for the day" wrappingWidth="204.638671875" />
       <JFXButton layoutX="463.0" layoutY="255.0" style="-fx-background-color: #00796B;" text="Material" />
    </children>
 </AnchorPane>

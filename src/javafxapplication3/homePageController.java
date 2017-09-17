@@ -5,6 +5,7 @@
  */
 package javafxapplication3;
 
+import Utilities.dbGets;
 import java.sql.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
@@ -38,12 +39,17 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafxapplication3.Models.User;
+
 
 /**
  *
  * @author Renier Coetsee
  */
 public class homePageController implements Initializable {
+    
+    
+    
 
        @FXML
     private JFXPasswordField passField;
@@ -64,6 +70,9 @@ public class homePageController implements Initializable {
     private StackPane stackPane;
     
     JavaFXApplication3 control = new JavaFXApplication3();
+    UserPageController userControl = new UserPageController();
+    dbGets utiGets = new dbGets();
+    
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
@@ -79,13 +88,20 @@ public class homePageController implements Initializable {
         
         if (login(userField.getText(), passField.getText())) {
            
-            myPane = FXMLLoader.load(getClass().getResource("userPage.fxml"));
-            Scene scene = new Scene(myPane);
-            stage.setScene(scene);
+            
+            User dbUser = utiGets.getUserWithUserName(userField.getText());
+            
+            Boolean isStudent = true;
+            if(dbUser.student == 0){
+                isStudent = false;
+            }
+            else{
+                isStudent = true;
+            }
+            System.out.println(isStudent + "");
+            userControl.openScreen(dbUser.userid, isStudent);
 
             prevStage.close();
-
-            stage.show();
         } else {
             
             JFXDialogLayout content = new JFXDialogLayout();
@@ -115,7 +131,7 @@ public class homePageController implements Initializable {
     
     public Boolean login(String username, String password){
         
-        User dbUser = getUser(username);
+        User dbUser = utiGets.getUserWithUserName(username);
         
         
         if(!(dbUser.user.equals("Not Found")) && !(dbUser.user.equals("An Error Occured"))){
@@ -135,34 +151,7 @@ public class homePageController implements Initializable {
     
      
     
-    public User getUser(String userName){
-        try{
-            
-                System.out.println(userName);
-              Connection conn = DriverManager.getConnection(
-               "jdbc:mysql://localhost:3306/userDb?useSSL=false", "renier", "plane123");
-              Statement stmt = conn.createStatement();
-              System.out.println("Here we are");
-              String userSelect = "select * from users where username = '" + userName + "'";
-              ResultSet gotUser = stmt.executeQuery(userSelect);
-              System.out.println("Maybe?");
-              if(gotUser.next()){
-                  System.out.println(gotUser.getString("username") +  gotUser.getString("password"));
-                  User user = new User(gotUser.getString("username"), gotUser.getString("password"));
-                  return user;
-              }
-              else{
-                 User user = new User("Not Found", "Not Found");
-                 return user;
-              }
-              
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            User user = new User("An Error Occured", "An Error Occured");
-            return user;
-        }
-    }
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -171,13 +160,5 @@ public class homePageController implements Initializable {
 }
 
 
-   class User{
-        String user;
-        String pass;
-        
-        public User(String dbUser, String dbPass){
-            this.user = dbUser;
-            this.pass = dbPass;
-        }
-    }
+  
     
